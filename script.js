@@ -18,7 +18,50 @@ function getComputerChoice() {
         console.log("scissors")
         return "scissors"
     }
-}
+};
 
 getComputerChoice();
 
+// Step 3: Write the logic to get the human choice
+// Your game will be played by a human player. You will write a function that takes the user choice and returns it.
+
+// Create a new function named getHumanChoice.
+// Write the code so that getHumanChoice will return one of the valid choices depending on what the user inputs.
+// Hint: Use the prompt method to get the user’s input.
+// Test what your function returns by using console.log.
+
+// function getHumanChoice () {
+//     let choice = prompt("Please enter 'rock', 'paper' or 'scissors'.")
+
+//     if (choice.toLowerCase() === "rock") {
+//         console.log("rock")
+//         return "rock"
+//     } else if (choice.toLowerCase() === "paper") {
+//         console.log("paper")
+//         return "paper"
+//     } else if (choice.toLowerCase() === "scissors") {
+//         console.log("scissors")
+//         return "scissors"
+//     } else {
+//         alert("That is not a valid option. Please choose again.")
+//     }   
+// };
+
+// optimised version
+
+function getHumanChoice() {
+    let choice = "";
+
+    while(true) {
+        choice = prompt("Please enter 'rock', 'paper', or 'scissors'.").toLowerCase();
+        if (choice === "rock" || choice === "paper" || choice === "scissors") {
+            console.log(choice)
+            return choice
+        }
+        else {
+            alert("That is not a valid option. Please choose again.");
+        }
+    }
+}
+
+getHumanChoice();
