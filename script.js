@@ -20,8 +20,6 @@ function getComputerChoice() {
     }
 };
 
-getComputerChoice();
-
 // Step 3: Write the logic to get the human choice
 // Your game will be played by a human player. You will write a function that takes the user choice and returns it.
 
@@ -50,13 +48,12 @@ getComputerChoice();
 // optimised version
 
 function getHumanChoice() {
-    let choice = "";
+    let Choice = "";
 
     while(true) {
-        choice = prompt("Please enter 'rock', 'paper', or 'scissors'.").toLowerCase();
-        if (choice === "rock" || choice === "paper" || choice === "scissors") {
-            console.log(choice)
-            return choice
+        Choice = prompt("Please enter 'rock', 'paper', or 'scissors'.").toLowerCase();
+        if (Choice === "rock" || Choice === "paper" || Choice === "scissors") {
+            return Choice
         }
         else {
             alert("That is not a valid option. Please choose again.");
@@ -64,4 +61,75 @@ function getHumanChoice() {
     }
 }
 
-getHumanChoice();
+
+// variables to keep track of score
+
+let humanScore = 0;
+
+let computerScore = 0;
+
+let round = 0;
+
+// Your game will be played round by round. You will write a function that takes the human and computer player choices as arguments, plays a single round, increments the round winner’s score and logs a winner announcement.
+
+// Create a new function named playRound.
+// Define two parameters for playRound: humanChoice and computerChoice. Use these two parameters to take the human and computer choices as arguments.
+// Make your function’s humanChoice parameter case-insensitive so that players can input “rock”, “ROCK”, “RocK”, or other variations.
+// Write the code for your playRound function to console.log a string value representing the round winner, such as: “You lose! Paper beats Rock”.
+// Increment the humanScore or computerScore variable based on the round winner.
+
+
+
+function playGame() {
+
+    function playRound(humanChoice, computerChoice) {
+
+        function youWin(humanChoice, computerChoice) {
+            console.log("You win! " + humanChoice + " beats " + computerChoice + ".");
+            humanScore += 1;
+            round += 1;
+            console.log("Your score is " + humanScore + ". The computer's score is " + computerScore + ".");
+        }
+
+        function youLose(humanChoice, computerChoice) {
+            console.log("You lose! " + computerChoice + " beats " + humanChoice + ".");
+            computerScore += 1;
+            round += 1;
+            console.log("Your score is " + humanScore + ". The computer's score is " + computerScore + ".");
+        }
+
+        if (humanChoice === computerChoice) {
+            console.log("That's a tie! No one gets the point.");
+        } else if (humanChoice === "rock" && computerChoice === "paper") {
+            youLose(humanChoice, computerChoice);
+        } else if (humanChoice === "rock" && computerChoice === "scissors") {
+            youWin(humanChoice, computerChoice);
+        } else if (humanChoice === "paper" && computerChoice === "scissors") {
+            youLose(humanChoice, computerChoice);
+        } else if (humanChoice === "paper" && computerChoice === "rock") {
+            youWin(humanChoice, computerChoice);
+        } else if (humanChoice === "scissors" && computerChoice === "rock") {
+            youLose(humanChoice, computerChoice);
+        } else if (humanChoice === "scissors" && computerChoice === "paper") {
+            youWin(humanChoice, computerChoice);
+        }
+    }
+
+    while (round < 5) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    if (humanScore > computerScore) {
+        console.log("-------------------------------------------------" + "\n" + "Game over. You win!")
+    } else if (humanScore < computerScore) {
+        console.log("-------------------------------------------------" + "\n" + "Game over. You lose!")
+    } else {
+        console.log("-------------------------------------------------" + "\n" + "Game over! It's a tie!")
+    }
+
+}
+
+
+playGame();
